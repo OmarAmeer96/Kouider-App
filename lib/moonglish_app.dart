@@ -11,7 +11,7 @@ class KouiderApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(412, 917),
+      designSize: const Size(428, 926),
       minTextAdapt: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
