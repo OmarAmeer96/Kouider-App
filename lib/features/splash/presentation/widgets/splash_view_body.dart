@@ -37,15 +37,6 @@ class _SplashViewBodyState extends State<SplashViewBody>
     return Container(
       decoration: const BoxDecoration(
         color: ColorsManager.primaryColor,
-        // gradient: LinearGradient(
-        //   begin: Alignment(0.00, 1.00),
-        //   end: Alignment(0, -1),
-        //   colors: [
-        //     ColorsManager.primaryColor,
-        //     ColorsManager.primaryColor,
-        //     ColorsManager.primaryColor,
-        //   ],
-        // ),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -97,7 +88,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
       const Duration(seconds: 3),
       () {
         if (mounted) {
-          context.pushReplacementNamed(Routes.homeView);
+          context.pushReplacementNamed(Routes.mainView);
         }
       },
     );

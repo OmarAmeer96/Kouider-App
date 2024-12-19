@@ -4,6 +4,7 @@ import 'package:kouider_app/core/di/dependency_injection.dart';
 import 'package:kouider_app/core/routing/routes.dart';
 import 'package:kouider_app/features/home/logic/home_cubit/home_cubit.dart';
 import 'package:kouider_app/features/home/presentation/home_view.dart';
+import 'package:kouider_app/features/home/presentation/main_view.dart';
 import 'package:kouider_app/features/splash/presentation/splash_view.dart';
 
 class AppRouter {
@@ -18,20 +19,17 @@ class AppRouter {
           builder: (_) => const SplashView(),
         );
 
-      // case Routes.mainView:
-      //   return MaterialPageRoute(
-      //     builder: (_) => BlocProvider(
-      //       create: (context) => getIt<StudentsCubit>(),
-      //       child: const MainView(),
-      //     ),
-      //   );
-
-      case Routes.homeView:
+      case Routes.mainView:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => getIt<HomeCubit>(),
-            child: const HomeView(),
+            child: const MainView(),
           ),
+        );
+
+      case Routes.homeView:
+        return MaterialPageRoute(
+          builder: (_) => const HomeView(),
         );
       default:
         return null;
