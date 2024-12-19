@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kouider_app/core/helpers/assets.dart';
-import 'package:kouider_app/core/helpers/spacing.dart';
+import 'package:kouider_app/core/theming/colors_manager.dart';
 import 'package:kouider_app/features/home/presentation/widgets/custom_bottom_nav_bar_icon.dart';
 import 'package:kouider_app/features/home/presentation/home_view.dart';
+import 'package:kouider_app/features/home/presentation/widgets/disabled_view.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 class MainView extends StatefulWidget {
@@ -21,10 +22,18 @@ class _MainViewState extends State<MainView> {
   List<Widget> _buildScreens() {
     return [
       const HomeView(),
-      const Center(child: Text("Favorites View")),
-      const Center(child: Text("Cart View")),
-      const Center(child: Text("Profile View")),
-      const Center(child: Text("More View")),
+      DisabledView(
+        title: 'المفضلة',
+      ),
+      DisabledView(
+        title: 'عربة التسوق',
+      ),
+      DisabledView(
+        title: 'حسابي',
+      ),
+      DisabledView(
+        title: 'المزيد',
+      ),
     ];
   }
 
@@ -96,42 +105,40 @@ class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFf5f5f5),
+      backgroundColor: ColorsManager.scaffoldBackgroundColor,
       key: _scaffoldKey,
-      body: SafeArea(
-        child: PersistentTabView(
-          context,
-          controller: _controller,
-          screens: _buildScreens(),
-          items: _navBarsItems(),
-          navBarStyle: NavBarStyle.style2,
-          decoration: const NavBarDecoration(
-            colorBehindNavBar: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Color(0x0A000000),
-                blurRadius: 6,
-                offset: Offset(0, -2),
-                spreadRadius: 0,
-              )
-            ],
-          ),
-          resizeToAvoidBottomInset: true,
-          confineToSafeArea: true,
-          // navBarHeight: 50,
-          animationSettings: const NavBarAnimationSettings(
-            navBarItemAnimation: ItemAnimationSettings(
-              duration: Duration(milliseconds: 400),
-              curve: Curves.fastEaseInToSlowEaseOut,
-            ),
-            screenTransitionAnimation: ScreenTransitionAnimationSettings(
-              duration: Duration(milliseconds: 400),
-              curve: Curves.linearToEaseOut,
-              animateTabTransition: false,
-            ),
-          ),
-          backgroundColor: Colors.white,
+      body: PersistentTabView(
+        context,
+        controller: _controller,
+        screens: _buildScreens(),
+        items: _navBarsItems(),
+        navBarStyle: NavBarStyle.style2,
+        decoration: const NavBarDecoration(
+          colorBehindNavBar: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Color(0x0A000000),
+              blurRadius: 6,
+              offset: Offset(0, -2),
+              spreadRadius: 0,
+            )
+          ],
         ),
+        resizeToAvoidBottomInset: true,
+        confineToSafeArea: true,
+        // navBarHeight: 50,
+        animationSettings: const NavBarAnimationSettings(
+          navBarItemAnimation: ItemAnimationSettings(
+            duration: Duration(milliseconds: 400),
+            curve: Curves.fastEaseInToSlowEaseOut,
+          ),
+          screenTransitionAnimation: ScreenTransitionAnimationSettings(
+            duration: Duration(milliseconds: 400),
+            curve: Curves.linearToEaseOut,
+            animateTabTransition: false,
+          ),
+        ),
+        backgroundColor: Colors.white,
       ),
     );
   }

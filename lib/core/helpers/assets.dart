@@ -11,6 +11,7 @@ class SvgAssets {
 
   // Home View
   static const homeBackIcon = 'assets/svgs/home_back_icon.svg';
+  static const homeLocationIcon = 'assets/svgs/home_location_icon.svg';
   static const homeSearchIcon = 'assets/svgs/home_search_icon.svg';
   static const homeFilterIcon = 'assets/svgs/home_filter_icon.svg';
   static const homeDropDownIcon = 'assets/svgs/home_drop_down_icon.svg';

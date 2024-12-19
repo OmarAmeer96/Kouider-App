@@ -1,12 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:kouider_app/core/helpers/assets.dart';
 import 'package:kouider_app/core/helpers/spacing.dart';
+import 'package:kouider_app/core/theming/colors_manager.dart';
 import 'package:kouider_app/core/theming/styles.dart';
 import 'package:kouider_app/core/widgets/custom_fading_widget.dart';
 import 'package:kouider_app/features/home/data/models/products.dart';
 import 'package:kouider_app/features/home/logic/home_cubit/home_cubit.dart';
 import 'package:kouider_app/features/home/logic/home_cubit/home_state.dart';
+import 'package:kouider_app/features/home/presentation/widgets/custom_home_app_bar.dart';
 import 'package:kouider_app/features/home/presentation/widgets/custom_home_item_loading_widget.dart';
 
 class HomeView extends StatefulWidget {
@@ -25,30 +29,36 @@ class _HomeViewBodyState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+    return Container(
+      color: ColorsManager.scaffoldBackgroundColor,
       child: SingleChildScrollView(
         child: Column(
           children: [
-            BlocBuilder<HomeCubit, HomeState>(
-              buildWhen: (previous, current) =>
-                  current is Loading || current is Success || current is Error,
-              builder: (context, state) {
-                return state.maybeWhen(
-                  loading: () {
-                    return setupsLoadingState();
-                  },
-                  success: (productsResponse) {
-                    // return setupsLoadingState();
-                    // return setupErrorState(context);
-                    return setupSuccessState(productsResponse);
-                  },
-                  error: (errorHandler) {
-                    return setupErrorState(context);
-                  },
-                  orElse: () => const SizedBox.shrink(),
-                );
-              },
+            CustomHomeAppBar(),
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: BlocBuilder<HomeCubit, HomeState>(
+                buildWhen: (previous, current) =>
+                    current is Loading ||
+                    current is Success ||
+                    current is Error,
+                builder: (context, state) {
+                  return state.maybeWhen(
+                    loading: () {
+                      return setupsLoadingState();
+                    },
+                    success: (productsResponse) {
+                      // return setupsLoadingState();
+                      // return setupErrorState(context);
+                      return setupSuccessState(productsResponse);
+                    },
+                    error: (errorHandler) {
+                      return setupErrorState(context);
+                    },
+                    orElse: () => const SizedBox.shrink(),
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -61,47 +71,9 @@ class _HomeViewBodyState extends State<HomeView> {
       children: [
         Text(
           'Products',
-          style: Styles.font30OrangeBold,
-        ),
-        verticalSpace(60),
-        Text(
-          'Products',
-          style: Styles.font30OrangeBold,
-        ),
-        verticalSpace(60),
-        Text(
-          'Products',
-          style: Styles.font30OrangeBold,
-        ),
-        verticalSpace(60),
-        Text(
-          'Products',
-          style: Styles.font30OrangeBold,
-        ),
-        verticalSpace(60),
-        Text(
-          'Products',
-          style: Styles.font30OrangeBold,
-        ),
-        verticalSpace(60),
-        Text(
-          'Products',
-          style: Styles.font30OrangeBold,
-        ),
-        verticalSpace(60),
-        Text(
-          'Products',
-          style: Styles.font30OrangeBold,
-        ),
-        verticalSpace(60),
-        Text(
-          'Products',
-          style: Styles.font30OrangeBold,
-        ),
-        verticalSpace(60),
-        Text(
-          'Products',
-          style: Styles.font30OrangeBold,
+          style: Styles.font30OrangeBold.copyWith(
+            fontSize: 20,
+          ),
         ),
       ],
     );

@@ -37,7 +37,7 @@ class CustomBottomNavBarIcon extends StatelessWidget {
             child: Center(
               child: Text(
                 text,
-                style: Styles.font11BottomNav.copyWith(
+                style: Styles.font11BottomNavMedium.copyWith(
                   color: isActiveIcon
                       ? const Color(0xFFFE7700)
                       : const Color(0xFF999999),

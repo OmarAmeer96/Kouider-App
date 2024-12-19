@@ -21,7 +21,7 @@ class KouiderApp extends StatelessWidget {
         onGenerateRoute: appRouter.generateRoute,
         theme: ThemeData(
           primaryColor: ColorsManager.primaryColor,
-          scaffoldBackgroundColor: Colors.white,
+          scaffoldBackgroundColor: ColorsManager.scaffoldBackgroundColor,
         ),
         localizationsDelegates: const [
           S.delegate,
