@@ -2,7 +2,7 @@
     <application
         android:label="Kouider App"
         android:name="${applicationName}"
-        android:icon="@mipmap/kouider_app_icon">
+        android:icon="@mipmap/kouider_app_icon_2">
         <activity
             android:name=".MainActivity"
             android:exported="true"
