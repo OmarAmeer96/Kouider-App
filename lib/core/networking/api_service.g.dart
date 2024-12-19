@@ -14,7 +14,7 @@ class _ApiService implements ApiService {
     this.baseUrl,
     this.errorLogger,
   }) {
-    baseUrl ??= 'https://monglishtest.fekracomputers.net/api/';
+    baseUrl ??= 'https://stg.koueider.com/wp-json/apis/v2/';
   }
 
   final Dio _dio;
@@ -22,6 +22,56 @@ class _ApiService implements ApiService {
   String? baseUrl;
 
   final ParseErrorLogger? errorLogger;
+
+  @override
+  Future<Products> getProducts({
+    int? page,
+    int? productsPerPage,
+    String? category,
+    int? minPrice,
+    int? maxPrice,
+    String? sortCriteria,
+    String? sortArrangement,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'page': page,
+      r'products_per_page': productsPerPage,
+      r'category': category,
+      r'price_range[0]': minPrice,
+      r'price_range[1]': maxPrice,
+      r'sort[criteria]': sortCriteria,
+      r'sort[arrangement]': sortArrangement,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<Products>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          'products/filter',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late Products _value;
+    try {
+      _value = Products.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&

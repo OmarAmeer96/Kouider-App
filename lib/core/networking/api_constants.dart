@@ -1,9 +1,6 @@
 class ApiConstants {
-  static const String apiBaseUrl =
-      "https://monglishtest.fekracomputers.net/api/";
-  static const String login = "login";
-  static const String getStudents = "students/{id}";
-  static const String register = "register";
+  static const String apiBaseUrl = "https://stg.koueider.com/wp-json/apis/v2/";
+  static const String getProducts = "products/filter";
 }
 
 class ApiErrors {
