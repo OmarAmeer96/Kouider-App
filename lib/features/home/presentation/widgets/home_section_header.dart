@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kouider_app/core/helpers/assets.dart';
+import 'package:kouider_app/core/helpers/spacing.dart';
 import 'package:kouider_app/core/theming/styles.dart';
+import 'package:kouider_app/features/home/presentation/widgets/animated_selection_widget.dart';
 
 class HomeSectionHeader extends StatelessWidget {
   const HomeSectionHeader({
@@ -13,16 +15,27 @@ class HomeSectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        Text(
-          title,
-          style: Styles.font21HomeHeaderBold,
+        Row(
+          children: [
+            Text(
+              title,
+              style: Styles.font21HomeHeaderBold,
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: SvgPicture.asset(SvgAssets.homeDropDownIcon),
+            ),
+          ],
         ),
-        IconButton(
-          onPressed: () {},
-          icon: SvgPicture.asset(SvgAssets.homeDropDownIcon),
+        verticalSpace(4),
+        Row(
+          children: [
+            AnimatedSelectionWidget(),
+          ],
         ),
+        verticalSpace(22),
       ],
     );
   }

@@ -7,7 +7,6 @@ import 'package:kouider_app/core/widgets/custom_fading_widget.dart';
 import 'package:kouider_app/features/home/data/models/products.dart';
 import 'package:kouider_app/features/home/logic/home_cubit/home_cubit.dart';
 import 'package:kouider_app/features/home/logic/home_cubit/home_state.dart';
-import 'package:kouider_app/features/home/presentation/widgets/animated_selection_widget.dart';
 import 'package:kouider_app/features/home/presentation/widgets/custom_home_app_bar.dart';
 import 'package:kouider_app/features/home/presentation/widgets/custom_home_item_loading_widget.dart';
 import 'package:kouider_app/features/home/presentation/widgets/home_section_header.dart';
@@ -66,18 +65,64 @@ class _HomeViewBodyState extends State<HomeView> {
   }
 
   Widget setupSuccessState(Products productsResponse) {
-    return Column(children: [
-      HomeSectionHeader(
-        title: "حلويات غربية",
-      ),
-      verticalSpace(4),
-      Row(
-        children: [
-          AnimatedSelectionWidget(),
-        ],
-      ),
-      verticalSpace(22),
-    ]);
+    return Column(
+      children: [
+        HomeSectionHeader(
+          title: "حلويات غربية",
+        ),
+        // GridView of the products
+        GridView.builder(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: productsResponse.products!.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 0.7,
+          ),
+          itemBuilder: (context, index) {
+            return Container(
+              margin: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.network(
+                        productsResponse.products![index].mainImg!.src!,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          productsResponse.products![index].arName!,
+                          style: Styles.font13SelectionWidgetActive,
+                        ),
+                        verticalSpace(4),
+                        Text(
+                          productsResponse.products![index].price.toString(),
+                          style: Styles.font13SelectionWidgetActive.copyWith(
+                            color: ColorsManager.mainBlue,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      ],
+    );
   }
 
   Widget setupsLoadingState() {
