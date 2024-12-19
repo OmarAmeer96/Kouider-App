@@ -28,6 +28,12 @@ class Styles {
     fontFamily: FontFamilyHelper.vazirmatnBold,
   );
 
+  static TextStyle font13SelectionWidgetActive = TextStyle(
+    color: ColorsManager.primaryColor,
+    fontSize: 13.sp,
+    fontFamily: FontFamilyHelper.vazirmatnSemiBold,
+  );
+
   // Remove
   static TextStyle font30OrangeBold = TextStyle(
     color: ColorsManager.primaryColor,

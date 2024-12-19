@@ -1,8 +1,5 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:kouider_app/core/helpers/assets.dart';
 import 'package:kouider_app/core/helpers/spacing.dart';
 import 'package:kouider_app/core/theming/colors_manager.dart';
 import 'package:kouider_app/core/theming/styles.dart';
@@ -10,8 +7,10 @@ import 'package:kouider_app/core/widgets/custom_fading_widget.dart';
 import 'package:kouider_app/features/home/data/models/products.dart';
 import 'package:kouider_app/features/home/logic/home_cubit/home_cubit.dart';
 import 'package:kouider_app/features/home/logic/home_cubit/home_state.dart';
+import 'package:kouider_app/features/home/presentation/widgets/animated_selection_widget.dart';
 import 'package:kouider_app/features/home/presentation/widgets/custom_home_app_bar.dart';
 import 'package:kouider_app/features/home/presentation/widgets/custom_home_item_loading_widget.dart';
+import 'package:kouider_app/features/home/presentation/widgets/home_section_header.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -67,16 +66,18 @@ class _HomeViewBodyState extends State<HomeView> {
   }
 
   Widget setupSuccessState(Products productsResponse) {
-    return Column(
-      children: [
-        Text(
-          'Products',
-          style: Styles.font30OrangeBold.copyWith(
-            fontSize: 20,
-          ),
-        ),
-      ],
-    );
+    return Column(children: [
+      HomeSectionHeader(
+        title: "حلويات غربية",
+      ),
+      verticalSpace(4),
+      Row(
+        children: [
+          AnimatedSelectionWidget(),
+        ],
+      ),
+      verticalSpace(22),
+    ]);
   }
 
   Widget setupsLoadingState() {
