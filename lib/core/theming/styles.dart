@@ -7,6 +7,6 @@ class Styles {
   static TextStyle font30OrangeBold = TextStyle(
     color: ColorsManager.mainOrange,
     fontSize: 30.sp,
-    fontFamily: FontFamilyHelper.quicksandBold,
+    fontFamily: FontFamilyHelper.vazirmatnBold,
   );
 }
