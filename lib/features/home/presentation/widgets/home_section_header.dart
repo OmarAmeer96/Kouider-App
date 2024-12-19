@@ -35,7 +35,7 @@ class HomeSectionHeader extends StatelessWidget {
             AnimatedSelectionWidget(),
           ],
         ),
-        verticalSpace(22),
+        verticalSpace(20),
       ],
     );
   }

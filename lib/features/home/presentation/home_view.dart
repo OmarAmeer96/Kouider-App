@@ -29,37 +29,37 @@ class _HomeViewBodyState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Container(
       color: ColorsManager.scaffoldBackgroundColor,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            CustomHomeAppBar(),
-            Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: BlocBuilder<HomeCubit, HomeState>(
-                buildWhen: (previous, current) =>
-                    current is Loading ||
-                    current is Success ||
-                    current is Error,
-                builder: (context, state) {
-                  return state.maybeWhen(
-                    loading: () {
-                      return setupsLoadingState();
-                    },
-                    success: (productsResponse) {
-                      // return setupsLoadingState();
-                      // return setupErrorState(context);
-                      return setupSuccessState(productsResponse);
-                    },
-                    error: (errorHandler) {
-                      return setupErrorState(context);
-                    },
-                    orElse: () => const SizedBox.shrink(),
-                  );
-                },
+      child: Column(
+        children: [
+          CustomHomeAppBar(),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20),
+                child: BlocBuilder<HomeCubit, HomeState>(
+                  buildWhen: (previous, current) =>
+                      current is Loading ||
+                      current is Success ||
+                      current is Error,
+                  builder: (context, state) {
+                    return state.maybeWhen(
+                      loading: () {
+                        return setupsLoadingState();
+                      },
+                      success: (productsResponse) {
+                        return setupSuccessState(productsResponse);
+                      },
+                      error: (errorHandler) {
+                        return setupErrorState(context);
+                      },
+                      orElse: () => const SizedBox.shrink(),
+                    );
+                  },
+                ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -70,10 +70,10 @@ class _HomeViewBodyState extends State<HomeView> {
         HomeSectionHeader(
           title: "حلويات غربية",
         ),
-        // GridView of the products
         GridView.builder(
+          padding: const EdgeInsets.all(0),
           shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           itemCount: productsResponse.products!.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,

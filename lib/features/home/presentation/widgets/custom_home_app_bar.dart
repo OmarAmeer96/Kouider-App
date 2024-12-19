@@ -85,8 +85,9 @@ class CustomHomeAppBar extends StatelessWidget {
         ),
         verticalSpace(20),
         Divider(
+          height: 0,
           color: Color(0xffd4dcf1),
-          thickness: 0.5,
+          thickness: 1.5,
         ),
       ],
     );
