@@ -58,13 +58,16 @@ class _HomeViewBodyState extends State<HomeViewBody> {
 
   Widget setupSuccessState(Products productsResponse) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 1,
+      height: MediaQuery.of(context).size.height * 0.8,
       child: ListView.builder(
         itemCount: productsResponse.products!.length,
         itemBuilder: (context, index) {
-          return HomeViewItem(
-            productsResponse: productsResponse,
-            index: index,
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 8),
+            child: HomeViewItem(
+              productsResponse: productsResponse,
+              index: index,
+            ),
           );
         },
       ),
@@ -122,28 +125,38 @@ class HomeViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       children: [
-        CachedNetworkImage(
-          imageUrl: productsResponse.products![index].mainImg!.src!,
-          placeholder: (context, url) =>
-              Center(child: CircularProgressIndicator()),
-          errorWidget: (context, url, error) => Icon(Icons.error),
-        ),
-        verticalSpace(20),
-        Text(
-          productsResponse.products![index].arName!,
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
+        ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: SizedBox(
+            width: 160,
+            child: CachedNetworkImage(
+              imageUrl: productsResponse.products![index].mainImg!.src!,
+              placeholder: (context, url) =>
+                  Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
           ),
         ),
-        verticalSpace(20),
-        Text(
-          productsResponse.products![index].price!,
-          style: TextStyle(
-            fontSize: 16,
-          ),
+        horizontalSpace(12),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              productsResponse.products![index].arName!,
+              style: TextStyle(
+                fontSize: 16,
+              ),
+            ),
+            verticalSpace(8),
+            Text(
+              productsResponse.products![index].price!,
+              style: TextStyle(
+                fontSize: 16,
+              ),
+            ),
+          ],
         ),
       ],
     );
