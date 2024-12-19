@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:kouider_app/core/networking/api_constants.dart';
-import 'package:kouider_app/features/home/products/products.dart';
+import 'package:kouider_app/features/home/data/models/products.dart';
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 part 'api_service.g.dart';

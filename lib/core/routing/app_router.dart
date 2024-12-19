@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kouider_app/core/routing/routes.dart';
+import 'package:kouider_app/features/home/presentation/home_view.dart';
+import 'package:kouider_app/features/splash/presentation/splash_view.dart';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
@@ -7,10 +10,10 @@ class AppRouter {
     final arguments = settings.arguments;
 
     switch (settings.name) {
-      // case Routes.splashView:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const SplashView(),
-      //   );
+      case Routes.splashView:
+        return MaterialPageRoute(
+          builder: (_) => const SplashView(),
+        );
 
       // case Routes.mainView:
       //   return MaterialPageRoute(
@@ -20,10 +23,10 @@ class AppRouter {
       //     ),
       //   );
 
-      // case Routes.homeView:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const HomeView(),
-      //   );
+      case Routes.homeView:
+        return MaterialPageRoute(
+          builder: (_) => const HomeView(),
+        );
       default:
         return null;
     }

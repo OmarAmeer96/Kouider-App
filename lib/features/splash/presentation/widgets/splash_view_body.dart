@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kouider_app/core/helpers/assets.dart';
 import 'package:kouider_app/core/helpers/extensions.dart';
 import 'package:kouider_app/core/routing/routes.dart';
 import 'package:kouider_app/core/theming/colors_manager.dart';
@@ -35,15 +36,16 @@ class _SplashViewBodyState extends State<SplashViewBody>
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment(0.00, 1.00),
-          end: Alignment(0, -1),
-          colors: [
-            ColorsManager.mainOrange,
-            ColorsManager.mainOrange,
-            ColorsManager.mainOrange,
-          ],
-        ),
+        color: ColorsManager.primaryColor,
+        // gradient: LinearGradient(
+        //   begin: Alignment(0.00, 1.00),
+        //   end: Alignment(0, -1),
+        //   colors: [
+        //     ColorsManager.primaryColor,
+        //     ColorsManager.primaryColor,
+        //     ColorsManager.primaryColor,
+        //   ],
+        // ),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -51,12 +53,12 @@ class _SplashViewBodyState extends State<SplashViewBody>
         children: [
           FadingLogo(
             opacityAnimation: opacityAnimation,
-            image: 'assets/svgs/splash_app_logo.svg',
+            image: SvgAssets.homeFavIconActive,
             height: 70,
           ),
           FadingLogo(
             opacityAnimation: opacityAnimation,
-            image: 'assets/images/splash_boy.png',
+            image: SvgAssets.kouiderLogo,
             height: 400,
           ),
           SlidingText(
@@ -95,7 +97,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
       const Duration(seconds: 3),
       () {
         if (mounted) {
-          context.pushReplacementNamed(Routes.mainView);
+          context.pushReplacementNamed(Routes.homeView);
         }
       },
     );

@@ -1,4 +1,7 @@
 class SvgAssets {
+  // App Logo
+  static const kouiderLogo = 'assets/svgs/kouider_logo.svg';
+
   // Bottom Navigation Bar
   static const bottomNavHome = 'assets/svgs/bottom_nav_home.svg';
   static const bottomNavFav = 'assets/svgs/bottom_nav_fav.svg';

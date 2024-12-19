@@ -5,7 +5,7 @@ import 'package:kouider_app/core/theming/font_family_helper.dart';
 
 class Styles {
   static TextStyle font30OrangeBold = TextStyle(
-    color: ColorsManager.mainOrange,
+    color: ColorsManager.primaryColor,
     fontSize: 30.sp,
     fontFamily: FontFamilyHelper.vazirmatnBold,
   );

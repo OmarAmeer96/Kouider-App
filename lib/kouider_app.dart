@@ -18,7 +18,7 @@ class KouiderApp extends StatelessWidget {
         title: 'Kouider App',
         onGenerateRoute: appRouter.generateRoute,
         theme: ThemeData(
-          primaryColor: ColorsManager.mainOrange,
+          primaryColor: ColorsManager.primaryColor,
           scaffoldBackgroundColor: Colors.white,
         ),
         initialRoute: Routes.splashView,
