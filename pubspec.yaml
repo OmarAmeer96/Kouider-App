@@ -67,6 +67,8 @@ dependencies:
   persistent_bottom_nav_bar: ^6.2.1
   # Loading spinner.
   flutter_spinkit: ^5.2.1
+  # Error tracking and monitoring
+  sentry_flutter: ^8.11.2
 
 dev_dependencies:
   flutter_test:
