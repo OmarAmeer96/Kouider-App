@@ -67,11 +67,15 @@ class _HomeViewBodyState extends State<HomeView> {
                         builder: (context, state) {
                           return state.maybeWhen(
                             loading: setupsLoadingState,
-                            success: (productsResponse) => setupSuccessState(
-                              context,
-                              productsResponse,
-                            ),
-                            error: (_) => setupErrorState(context),
+                            success: (productsResponse) {
+                              return setupSuccessState(
+                                context,
+                                productsResponse,
+                              );
+                            },
+                            error: (_) {
+                              return setupErrorState(context);
+                            },
                             orElse: () => SizedBox.shrink(),
                           );
                         },
