@@ -34,6 +34,30 @@ class Styles {
     fontFamily: FontFamilyHelper.vazirmatnSemiBold,
   );
 
+  static TextStyle font17ProductItemBold = TextStyle(
+    color: Color(0xFF1D2128),
+    fontSize: 17.sp,
+    fontFamily: FontFamilyHelper.vazirmatnBold,
+  );
+
+  static TextStyle font13ProductItemweight = TextStyle(
+    color: Color(0xFF868686),
+    fontSize: 13.sp,
+    fontFamily: FontFamilyHelper.vazirmatnMedium,
+  );
+
+  static TextStyle font22ProductItemPrice = TextStyle(
+    color: Color(0xFF425486),
+    fontSize: 22.sp,
+    fontFamily: FontFamilyHelper.vazirmatnBold,
+  );
+
+  static TextStyle font11ProductItemPoints = TextStyle(
+    color: Color(0xFF15BB55),
+    fontSize: 11.sp,
+    fontFamily: FontFamilyHelper.vazirmatnBold,
+  );
+
   // Remove
   static TextStyle font30OrangeBold = TextStyle(
     color: ColorsManager.primaryColor,

@@ -28,39 +28,48 @@ class _HomeViewBodyState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: ColorsManager.scaffoldBackgroundColor,
-      child: Column(
-        children: [
-          CustomHomeAppBar(),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: BlocBuilder<HomeCubit, HomeState>(
-                  buildWhen: (previous, current) =>
-                      current is Loading ||
-                      current is Success ||
-                      current is Error,
-                  builder: (context, state) {
-                    return state.maybeWhen(
-                      loading: () {
-                        return setupsLoadingState();
-                      },
-                      success: (productsResponse) {
-                        return setupSuccessState(productsResponse);
-                      },
-                      error: (errorHandler) {
-                        return setupErrorState(context);
-                      },
-                      orElse: () => const SizedBox.shrink(),
-                    );
-                  },
+    return RefreshIndicator(
+      color: ColorsManager.primaryColor,
+      displacement: 10,
+      onRefresh: () async {
+        context.read<HomeCubit>().getProducts();
+      },
+      child: Container(
+        color: ColorsManager.scaffoldBackgroundColor,
+        child: Column(
+          children: [
+            CustomHomeAppBar(),
+            Expanded(
+              child: SingleChildScrollView(
+                // TODO: Remove if the RefreshIndicator is not working
+                // physics: const BouncingScrollPhysics(),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: BlocBuilder<HomeCubit, HomeState>(
+                    buildWhen: (previous, current) =>
+                        current is Loading ||
+                        current is Success ||
+                        current is Error,
+                    builder: (context, state) {
+                      return state.maybeWhen(
+                        loading: () {
+                          return setupsLoadingState();
+                        },
+                        success: (productsResponse) {
+                          return setupSuccessState(productsResponse);
+                        },
+                        error: (errorHandler) {
+                          return setupErrorState(context);
+                        },
+                        orElse: () => const SizedBox.shrink(),
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

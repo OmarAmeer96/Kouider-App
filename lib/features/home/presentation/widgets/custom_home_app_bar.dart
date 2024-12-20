@@ -22,8 +22,8 @@ class CustomHomeAppBar extends StatelessWidget {
                 icon: SvgPicture.asset(SvgAssets.homeBackIcon),
               ),
               Container(
-                height: 46,
-                padding: const EdgeInsets.all(6),
+                // height: 46,
+                padding: const EdgeInsets.all(8),
                 decoration: ShapeDecoration(
                   color: Colors.white,
                   shape: RoundedRectangleBorder(
@@ -66,9 +66,9 @@ class CustomHomeAppBar extends StatelessWidget {
               IconButton(
                 onPressed: () {},
                 icon: Container(
-                  width: 42,
-                  height: 42,
-                  padding: const EdgeInsets.all(5),
+                  // width: 42,
+                  // height: 42,
+                  padding: const EdgeInsets.all(8),
                   decoration: ShapeDecoration(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
