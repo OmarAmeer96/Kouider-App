@@ -9,6 +9,7 @@ import 'package:kouider_app/features/home/logic/home_cubit/home_cubit.dart';
 import 'package:kouider_app/features/home/logic/home_cubit/home_state.dart';
 import 'package:kouider_app/features/home/presentation/widgets/custom_home_app_bar.dart';
 import 'package:kouider_app/features/home/presentation/widgets/custom_home_item_loading_widget.dart';
+import 'package:kouider_app/features/home/presentation/widgets/home_floating_filter_button.dart';
 import 'package:kouider_app/features/home/presentation/widgets/home_section_header.dart';
 import 'package:kouider_app/features/home/presentation/widgets/product_item.dart';
 
@@ -36,37 +37,56 @@ class _HomeViewBodyState extends State<HomeView> {
       },
       child: Container(
         color: ColorsManager.scaffoldBackgroundColor,
-        child: Column(
+        child: Stack(
           children: [
-            CustomHomeAppBar(),
-            Expanded(
-              child: SingleChildScrollView(
-                // TODO: Remove if the RefreshIndicator is not working
-                // physics: const BouncingScrollPhysics(),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
-                  child: BlocBuilder<HomeCubit, HomeState>(
-                    buildWhen: (previous, current) =>
-                        current is Loading ||
-                        current is Success ||
-                        current is Error,
-                    builder: (context, state) {
-                      return state.maybeWhen(
-                        loading: () {
-                          return setupsLoadingState();
+            Column(
+              children: [
+                CustomHomeAppBar(),
+                Expanded(
+                  child: SingleChildScrollView(
+                    // TODO: Remove if the RefreshIndicator is not working
+                    // physics: const BouncingScrollPhysics(),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: BlocBuilder<HomeCubit, HomeState>(
+                        buildWhen: (previous, current) =>
+                            current is Loading ||
+                            current is Success ||
+                            current is Error,
+                        builder: (context, state) {
+                          return state.maybeWhen(
+                            loading: () {
+                              return setupsLoadingState();
+                            },
+                            success: (productsResponse) {
+                              return setupSuccessState(productsResponse);
+                            },
+                            error: (errorHandler) {
+                              return setupErrorState(context);
+                            },
+                            orElse: () => const SizedBox.shrink(),
+                          );
                         },
-                        success: (productsResponse) {
-                          return setupSuccessState(productsResponse);
-                        },
-                        error: (errorHandler) {
-                          return setupErrorState(context);
-                        },
-                        orElse: () => const SizedBox.shrink(),
-                      );
-                    },
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              ],
+            ),
+            BlocBuilder<HomeCubit, HomeState>(
+              builder: (context, state) {
+                return state is Success
+                    ? Positioned(
+                        left: 12,
+                        top: MediaQuery.of(context).size.height * 0.6,
+                        child: HomeFloatingFilterButton(
+                          onPressed: () {
+                            context.read<HomeCubit>().getProducts();
+                          },
+                        ),
+                      )
+                    : const SizedBox.shrink();
+              },
             ),
           ],
         ),
@@ -77,20 +97,24 @@ class _HomeViewBodyState extends State<HomeView> {
   Widget setupSuccessState(Products productsResponse) {
     return Column(
       children: [
-        HomeSectionHeader(
-          title: "حلويات غربية",
-        ),
-        ListView.builder(
-          padding: const EdgeInsets.all(0),
-          shrinkWrap: true,
-          physics: const BouncingScrollPhysics(),
-          itemCount: productsResponse.products!.length,
-          itemBuilder: (context, index) {
-            return ProductItem(
-              product: productsResponse.products![index],
-            );
-          },
-        ),
+        Column(
+          children: [
+            HomeSectionHeader(
+              title: "حلويات غربية",
+            ),
+            ListView.builder(
+              padding: const EdgeInsets.all(0),
+              shrinkWrap: true,
+              physics: const BouncingScrollPhysics(),
+              itemCount: productsResponse.products!.length,
+              itemBuilder: (context, index) {
+                return ProductItem(
+                  product: productsResponse.products![index],
+                );
+              },
+            ),
+          ],
+        )
       ],
     );
   }
