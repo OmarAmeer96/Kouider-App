@@ -27,7 +27,7 @@ class HomeCubit extends Cubit<HomeState> {
     emit(const HomeState.loading());
     final response = await _productsRepo.getProducts(
       page: currentPage,
-      productsPerPage: 5,
+      productsPerPage: 10,
       minPrice: minPrice,
       maxPrice: maxPrice,
       sortCriteria: sortCriteria,
@@ -61,7 +61,7 @@ class HomeCubit extends Cubit<HomeState> {
 
     final response = await _productsRepo.getProducts(
       page: currentPage,
-      productsPerPage: 5,
+      productsPerPage: 10,
       minPrice: minPrice,
       maxPrice: maxPrice,
       sortCriteria: sortCriteria,
@@ -81,7 +81,7 @@ class HomeCubit extends Cubit<HomeState> {
       },
       failure: (error) {
         isLoadingMore = false;
-        emit(HomeState.error(
+        emit(HomeState.paginationError(
           error: error.apiErrorModel.message ?? 'Something went wrong!',
         ));
       },

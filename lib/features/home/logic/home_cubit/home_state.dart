@@ -7,4 +7,5 @@ class HomeState<T> with _$HomeState<T> {
   const factory HomeState.loading() = Loading;
   const factory HomeState.success(T data) = Success<T>;
   const factory HomeState.error({required String error}) = Error;
+  const factory HomeState.paginationError({required String error}) = PaginationError;
 }
