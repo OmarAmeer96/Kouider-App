@@ -97,6 +97,7 @@ class _HomeViewBodyState extends State<HomeView> {
               itemBuilder: (context, index) {
                 return ProductItem(
                   product: productsResponse.products![index],
+                  isLastItem: index == productsResponse.products!.length - 1,
                 );
               },
             ),

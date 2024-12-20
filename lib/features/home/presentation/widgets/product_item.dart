@@ -12,14 +12,16 @@ class ProductItem extends StatelessWidget {
   const ProductItem({
     super.key,
     required this.product,
+    required this.isLastItem,
   });
 
   final Product product;
+  final bool isLastItem;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 30),
+      padding: EdgeInsets.only(bottom: isLastItem ? 20 : 30),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
