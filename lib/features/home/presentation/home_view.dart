@@ -37,7 +37,7 @@ class _HomeViewBodyState extends State<HomeView> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Filters', style: Styles.font22ProductItemPrice),
+          title: Text('الفلاتر', style: Styles.font22ProductItemPrice),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -46,7 +46,7 @@ class _HomeViewBodyState extends State<HomeView> {
                   return Column(
                     children: [
                       Text(
-                          'Min Price: \$${context.read<HomeCubit>().minPrice ?? 0}'),
+                          'الحد الأدنى للسعر: \$${context.read<HomeCubit>().minPrice ?? 0}'),
                       Slider(
                         value: (context.read<HomeCubit>().minPrice ?? 0)
                             .toDouble(),
@@ -61,7 +61,7 @@ class _HomeViewBodyState extends State<HomeView> {
                         },
                       ),
                       Text(
-                          'Max Price: \$${context.read<HomeCubit>().maxPrice ?? 1000}'),
+                          'الحد الأقصى للسعر: \$${context.read<HomeCubit>().maxPrice ?? 1000}'),
                       Slider(
                         value: (context.read<HomeCubit>().maxPrice ?? 1000)
                             .toDouble(),
@@ -77,19 +77,19 @@ class _HomeViewBodyState extends State<HomeView> {
                       ),
                       DropdownButton<String>(
                         value: context.read<HomeCubit>().sortCriteria,
-                        hint: Text('Sort Criteria'),
+                        hint: Text('معايير الترتيب'),
                         items: [
                           DropdownMenuItem(
                             value: 'price',
-                            child: Text('Price'),
+                            child: Text('السعر'),
                           ),
                           DropdownMenuItem(
                             value: 'date',
-                            child: Text('Date'),
+                            child: Text('التاريخ'),
                           ),
                           DropdownMenuItem(
                             value: 'alphabetical',
-                            child: Text('Alphabetical'),
+                            child: Text('أبجدي'),
                           ),
                         ],
                         onChanged: (value) {
@@ -100,15 +100,15 @@ class _HomeViewBodyState extends State<HomeView> {
                       ),
                       DropdownButton<String>(
                         value: context.read<HomeCubit>().sortArrangement,
-                        hint: Text('Sort Arrangement'),
+                        hint: Text('ترتيب الفلاتر'),
                         items: [
                           DropdownMenuItem(
                             value: 'ASC',
-                            child: Text('Ascending'),
+                            child: Text('تصاعدي'),
                           ),
                           DropdownMenuItem(
                             value: 'DESC',
-                            child: Text('Descending'),
+                            child: Text('تنازلي'),
                           ),
                         ],
                         onChanged: (value) {
@@ -129,7 +129,7 @@ class _HomeViewBodyState extends State<HomeView> {
                 context.read<HomeCubit>().resetFilters();
                 Navigator.pop(context);
               },
-              child: Text('Reset Filters'),
+              child: Text('إعادة تعيين الفلاتر'),
             ),
             TextButton(
               onPressed: () {
@@ -142,7 +142,7 @@ class _HomeViewBodyState extends State<HomeView> {
                     );
                 Navigator.pop(context);
               },
-              child: Text('Apply'),
+              child: Text('تطبيق'),
             ),
           ],
         );
