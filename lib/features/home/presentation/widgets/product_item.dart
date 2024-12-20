@@ -6,7 +6,7 @@ import 'package:kouider_app/core/helpers/spacing.dart';
 import 'package:kouider_app/core/theming/styles.dart';
 import 'package:kouider_app/features/home/data/models/product.dart';
 import 'package:kouider_app/features/home/presentation/widgets/product_item_image.dart';
-import 'package:kouider_app/features/home/presentation/widgets/product_item_products_widget.dart';
+import 'package:kouider_app/features/home/presentation/widgets/product_item_points_widget.dart';
 
 class ProductItem extends StatelessWidget {
   const ProductItem({
@@ -61,7 +61,7 @@ class ProductItem extends StatelessWidget {
                     horizontalSpace(5),
                     Column(
                       children: [
-                        verticalSpace(4),
+                        verticalSpace(5),
                         Text(
                           "8-7 أفراد",
                           style: Styles.font13ProductItemweight.copyWith(
@@ -72,7 +72,7 @@ class ProductItem extends StatelessWidget {
                     ),
                   ],
                 ),
-                // TODO: Make it at the end of the column
+                verticalSpace(20),
                 Row(
                   children: [
                     Text(

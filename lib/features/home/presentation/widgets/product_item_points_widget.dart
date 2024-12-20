@@ -26,10 +26,15 @@ class ProductItemPointsWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SvgPicture.asset(SvgAssets.homePointsIcon, width: 16),
-          horizontalSpace(4),
-          Text(
-            "50 نقطة",
-            style: Styles.font13ProductItemweight,
+          horizontalSpace(3),
+          Column(
+            children: [
+              verticalSpace(2),
+              Text(
+                "50 نقطة",
+                style: Styles.font13ProductItemweight,
+              ),
+            ],
           ),
         ],
       ),
