@@ -12,6 +12,7 @@ import 'package:kouider_app/features/home/presentation/widgets/custom_home_item_
 import 'package:kouider_app/features/home/presentation/widgets/home_floating_filter_button_bloc_builder.dart';
 import 'package:kouider_app/features/home/presentation/widgets/home_section_header.dart';
 import 'package:kouider_app/features/home/presentation/widgets/product_item.dart';
+import 'package:kouider_app/features/home/presentation/widgets/show_filter_dialog.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -30,124 +31,6 @@ class _HomeViewBodyState extends State<HomeView> {
   void initState() {
     context.read<HomeCubit>().getProducts();
     super.initState();
-  }
-
-  void showFilterDialog() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('الفلاتر', style: Styles.font22ProductItemPrice),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              StatefulBuilder(
-                builder: (context, setState) {
-                  return Column(
-                    children: [
-                      Text(
-                          'الحد الأدنى للسعر: \$${context.read<HomeCubit>().minPrice ?? 0}'),
-                      Slider(
-                        value: (context.read<HomeCubit>().minPrice ?? 0)
-                            .toDouble(),
-                        min: 0,
-                        max: 1000,
-                        divisions: 100,
-                        label: context.read<HomeCubit>().minPrice?.toString(),
-                        onChanged: (value) {
-                          setState(() {
-                            context.read<HomeCubit>().minPrice = value.toInt();
-                          });
-                        },
-                      ),
-                      Text(
-                          'الحد الأقصى للسعر: \$${context.read<HomeCubit>().maxPrice ?? 1000}'),
-                      Slider(
-                        value: (context.read<HomeCubit>().maxPrice ?? 1000)
-                            .toDouble(),
-                        min: 0,
-                        max: 1000,
-                        divisions: 100,
-                        label: context.read<HomeCubit>().maxPrice?.toString(),
-                        onChanged: (value) {
-                          setState(() {
-                            context.read<HomeCubit>().maxPrice = value.toInt();
-                          });
-                        },
-                      ),
-                      DropdownButton<String>(
-                        value: context.read<HomeCubit>().sortCriteria,
-                        hint: Text('معايير الترتيب'),
-                        items: [
-                          DropdownMenuItem(
-                            value: 'price',
-                            child: Text('السعر'),
-                          ),
-                          DropdownMenuItem(
-                            value: 'date',
-                            child: Text('التاريخ'),
-                          ),
-                          DropdownMenuItem(
-                            value: 'alphabetical',
-                            child: Text('أبجدي'),
-                          ),
-                        ],
-                        onChanged: (value) {
-                          setState(() {
-                            context.read<HomeCubit>().sortCriteria = value;
-                          });
-                        },
-                      ),
-                      DropdownButton<String>(
-                        value: context.read<HomeCubit>().sortArrangement,
-                        hint: Text('ترتيب الفلاتر'),
-                        items: [
-                          DropdownMenuItem(
-                            value: 'ASC',
-                            child: Text('تصاعدي'),
-                          ),
-                          DropdownMenuItem(
-                            value: 'DESC',
-                            child: Text('تنازلي'),
-                          ),
-                        ],
-                        onChanged: (value) {
-                          setState(() {
-                            context.read<HomeCubit>().sortArrangement = value;
-                          });
-                        },
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                context.read<HomeCubit>().resetFilters();
-                Navigator.pop(context);
-              },
-              child: Text('إعادة تعيين الفلاتر'),
-            ),
-            TextButton(
-              onPressed: () {
-                context.read<HomeCubit>().applyFilters(
-                      minPrice: context.read<HomeCubit>().minPrice,
-                      maxPrice: context.read<HomeCubit>().maxPrice,
-                      sortCriteria: context.read<HomeCubit>().sortCriteria,
-                      sortArrangement:
-                          context.read<HomeCubit>().sortArrangement,
-                    );
-                Navigator.pop(context);
-              },
-              child: Text('تطبيق'),
-            ),
-          ],
-        );
-      },
-    );
   }
 
   @override
@@ -190,7 +73,9 @@ class _HomeViewBodyState extends State<HomeView> {
               ],
             ),
             HomeFloatingfilterButtonBlocBuilder(
-              onPressed: showFilterDialog,
+              onPressed: () {
+                showFilterDialog(context);
+              },
             ),
           ],
         ),
