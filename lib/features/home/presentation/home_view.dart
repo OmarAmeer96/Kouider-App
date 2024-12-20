@@ -21,10 +21,112 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewBodyState extends State<HomeView> {
+  int? minPrice;
+  int? maxPrice;
+  String? sortCriteria;
+  String? sortArrangement;
+
   @override
   void initState() {
     context.read<HomeCubit>().getProducts();
     super.initState();
+  }
+
+  void showFilterDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Filters', style: Styles.font22ProductItemPrice),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              StatefulBuilder(
+                builder: (context, setState) {
+                  return Column(
+                    children: [
+                      Text('Min Price: \$${minPrice ?? 0}'),
+                      Slider(
+                        value: (minPrice ?? 0).toDouble(),
+                        min: 0,
+                        max: 1000,
+                        divisions: 100,
+                        label: minPrice?.toString(),
+                        onChanged: (value) {
+                          setState(() {
+                            minPrice = value.toInt();
+                          });
+                        },
+                      ),
+                      Text('Max Price: \$${maxPrice ?? 1000}'),
+                      Slider(
+                        value: (maxPrice ?? 1000).toDouble(),
+                        min: 0,
+                        max: 1000,
+                        divisions: 100,
+                        label: maxPrice?.toString(),
+                        onChanged: (value) {
+                          setState(() {
+                            maxPrice = value.toInt();
+                          });
+                        },
+                      ),
+                      DropdownButton<String>(
+                        value: sortCriteria,
+                        hint: Text('Sort Criteria'),
+                        items: ['price', 'date', 'alphabetical']
+                            .map((e) =>
+                                DropdownMenuItem(value: e, child: Text(e)))
+                            .toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            sortCriteria = value;
+                          });
+                        },
+                      ),
+                      DropdownButton<String>(
+                        value: sortArrangement,
+                        hint: Text('Sort Arrangement'),
+                        items: ['ASC', 'DESC']
+                            .map((e) =>
+                                DropdownMenuItem(value: e, child: Text(e)))
+                            .toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            sortArrangement = value;
+                          });
+                        },
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                context.read<HomeCubit>().clearFilters();
+                Navigator.pop(context);
+              },
+              child: Text('Reset Filters'),
+            ),
+            TextButton(
+              onPressed: () {
+                context.read<HomeCubit>().applyFilters(
+                      minPrice: minPrice,
+                      maxPrice: maxPrice,
+                      sortCriteria: sortCriteria,
+                      sortArrangement: sortArrangement,
+                    );
+                Navigator.pop(context);
+              },
+              child: Text('Apply'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -44,10 +146,8 @@ class _HomeViewBodyState extends State<HomeView> {
                 CustomHomeAppBar(),
                 Expanded(
                   child: SingleChildScrollView(
-                    // TODO: Remove if the RefreshIndicator is not working
-                    // physics: const BouncingScrollPhysics(),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: BlocBuilder<HomeCubit, HomeState>(
                         buildWhen: (previous, current) =>
                             current is Loading ||
@@ -55,16 +155,11 @@ class _HomeViewBodyState extends State<HomeView> {
                             current is Error,
                         builder: (context, state) {
                           return state.maybeWhen(
-                            loading: () {
-                              return setupsLoadingState();
-                            },
-                            success: (productsResponse) {
-                              return setupSuccessState(productsResponse);
-                            },
-                            error: (errorHandler) {
-                              return setupErrorState(context);
-                            },
-                            orElse: () => const SizedBox.shrink(),
+                            loading: setupsLoadingState,
+                            success: (productsResponse) =>
+                                setupSuccessState(productsResponse),
+                            error: (_) => setupErrorState(context),
+                            orElse: () => SizedBox.shrink(),
                           );
                         },
                       ),
@@ -74,9 +169,7 @@ class _HomeViewBodyState extends State<HomeView> {
               ],
             ),
             HomeFloatingfilterButtonBlocBuilder(
-              onPressed: () {
-                // TODO: Implement the filter functionality
-              },
+              onPressed: showFilterDialog,
             ),
           ],
         ),

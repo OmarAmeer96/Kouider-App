@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kouider_app/core/di/dependency_injection.dart';
 import 'package:kouider_app/core/routing/routes.dart';
-import 'package:kouider_app/features/home/logic/home_cubit/home_cubit.dart';
 import 'package:kouider_app/features/home/presentation/home_view.dart';
 import 'package:kouider_app/features/home/presentation/main_view.dart';
 import 'package:kouider_app/features/splash/presentation/splash_view.dart';
@@ -19,12 +16,17 @@ class AppRouter {
           builder: (_) => const SplashView(),
         );
 
+      // case Routes.mainView:
+      //   return MaterialPageRoute(
+      //     builder: (_) => BlocProvider(
+      //       create: (context) => getIt<HomeCubit>(),
+      //       child: const MainView(),
+      //     ),
+      //   );
+
       case Routes.mainView:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => getIt<HomeCubit>(),
-            child: const MainView(),
-          ),
+          builder: (_) => const MainView(),
         );
 
       case Routes.homeView:

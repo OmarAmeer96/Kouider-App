@@ -8,12 +8,29 @@ class HomeRepo {
 
   HomeRepo(this._apiService);
 
-  Future<ApiResult<Products>> getProducts() async {
+  Future<ApiResult<Products>> getProducts({
+    int? page,
+    int? productsPerPage,
+    String? category = 'assorted-bakeries',
+    int? minPrice,
+    int? maxPrice,
+    String? sortCriteria,
+    String? sortArrangement,
+  }) async {
     try {
-      final response = await _apiService.getProducts();
+      final response = await _apiService.getProducts(
+        page: page,
+        productsPerPage: productsPerPage,
+        category: category,
+        minPrice: minPrice,
+        maxPrice: maxPrice,
+        sortCriteria: sortCriteria,
+        sortArrangement: sortArrangement,
+      );
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(ErrorHandler.handle(error));
     }
   }
 }
+
