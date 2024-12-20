@@ -245,10 +245,11 @@ class _HomeViewBodyState extends State<HomeView> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            'An error occurred while fetching data, please try again later',
+            'حدث خطأ ما، يرجى المحاولة مرة أخرى',
             textAlign: TextAlign.center,
-            style: Styles.font30OrangeBold.copyWith(
+            style: Styles.font17ProductItemBold.copyWith(
               fontSize: 20,
+              color: ColorsManager.primaryColor,
             ),
           ),
           verticalSpace(16),
@@ -256,7 +257,7 @@ class _HomeViewBodyState extends State<HomeView> {
             onPressed: () {
               context.read<HomeCubit>().getProducts();
             },
-            child: Text("Retry"),
+            child: Text("إعادة المحاولة", style: Styles.font17ProductItemBold),
           ),
         ],
       ),
