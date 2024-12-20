@@ -12,6 +12,7 @@ class HomeRepo {
     int? page,
     int? productsPerPage,
     String? category = 'assorted-bakeries',
+    // String? category,
     int? minPrice,
     int? maxPrice,
     String? sortCriteria,
@@ -33,4 +34,3 @@ class HomeRepo {
     }
   }
 }
-

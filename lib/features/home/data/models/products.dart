@@ -17,4 +17,14 @@ class Products {
   }
 
   Map<String, dynamic> toJson() => _$ProductsToJson(this);
+
+  Products copyWith({
+    List<Product>? products,
+    Pagination? pagination,
+  }) {
+    return Products(
+      products: products ?? this.products,
+      pagination: pagination ?? this.pagination,
+    );
+  }
 }
