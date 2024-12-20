@@ -88,6 +88,7 @@ class _HomeViewBodyState extends State<HomeView> {
             HomeSectionHeader(
               title: "حلويات غربية",
             ),
+            verticalSpace(5),
             ListView.builder(
               padding: const EdgeInsets.all(0),
               shrinkWrap: true,
