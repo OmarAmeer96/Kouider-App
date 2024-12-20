@@ -7,18 +7,18 @@ class HomeCubit extends Cubit<HomeState> {
 
   HomeCubit(this._productsRepo) : super(const HomeState.initial());
 
-  int? _minPrice;
-  int? _maxPrice;
-  String? _sortCriteria;
-  String? _sortArrangement;
+  int? minPrice;
+  int? maxPrice;
+  String? sortCriteria;
+  String? sortArrangement;
 
   void getProducts() async {
     emit(const HomeState.loading());
     final response = await _productsRepo.getProducts(
-      minPrice: _minPrice,
-      maxPrice: _maxPrice,
-      sortCriteria: _sortCriteria,
-      sortArrangement: _sortArrangement,
+      minPrice: minPrice,
+      maxPrice: maxPrice,
+      sortCriteria: sortCriteria,
+      sortArrangement: sortArrangement,
     );
     response.when(
       success: (productsResponse) {
@@ -40,18 +40,18 @@ class HomeCubit extends Cubit<HomeState> {
     String? sortCriteria,
     String? sortArrangement,
   }) {
-    _minPrice = minPrice;
-    _maxPrice = maxPrice;
-    _sortCriteria = sortCriteria;
-    _sortArrangement = sortArrangement;
+    minPrice = minPrice;
+    maxPrice = maxPrice;
+    sortCriteria = sortCriteria;
+    sortArrangement = sortArrangement;
     getProducts();
   }
 
-  void clearFilters() {
-    _minPrice = null;
-    _maxPrice = null;
-    _sortCriteria = null;
-    _sortArrangement = null;
+  void resetFilters() {
+    minPrice = null;
+    maxPrice = null;
+    sortCriteria = null;
+    sortArrangement = null;
     getProducts();
   }
 }

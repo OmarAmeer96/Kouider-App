@@ -45,55 +45,75 @@ class _HomeViewBodyState extends State<HomeView> {
                 builder: (context, setState) {
                   return Column(
                     children: [
-                      Text('Min Price: \$${minPrice ?? 0}'),
+                      Text(
+                          'Min Price: \$${context.read<HomeCubit>().minPrice ?? 0}'),
                       Slider(
-                        value: (minPrice ?? 0).toDouble(),
+                        value: (context.read<HomeCubit>().minPrice ?? 0)
+                            .toDouble(),
                         min: 0,
                         max: 1000,
                         divisions: 100,
-                        label: minPrice?.toString(),
+                        label: context.read<HomeCubit>().minPrice?.toString(),
                         onChanged: (value) {
                           setState(() {
-                            minPrice = value.toInt();
+                            context.read<HomeCubit>().minPrice = value.toInt();
                           });
                         },
                       ),
-                      Text('Max Price: \$${maxPrice ?? 1000}'),
+                      Text(
+                          'Max Price: \$${context.read<HomeCubit>().maxPrice ?? 1000}'),
                       Slider(
-                        value: (maxPrice ?? 1000).toDouble(),
+                        value: (context.read<HomeCubit>().maxPrice ?? 1000)
+                            .toDouble(),
                         min: 0,
                         max: 1000,
                         divisions: 100,
-                        label: maxPrice?.toString(),
+                        label: context.read<HomeCubit>().maxPrice?.toString(),
                         onChanged: (value) {
                           setState(() {
-                            maxPrice = value.toInt();
+                            context.read<HomeCubit>().maxPrice = value.toInt();
                           });
                         },
                       ),
                       DropdownButton<String>(
-                        value: sortCriteria,
+                        value: context.read<HomeCubit>().sortCriteria,
                         hint: Text('Sort Criteria'),
-                        items: ['price', 'date', 'alphabetical']
-                            .map((e) =>
-                                DropdownMenuItem(value: e, child: Text(e)))
-                            .toList(),
+                        items: [
+                          DropdownMenuItem(
+                            value: 'price',
+                            child: Text('Price'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'date',
+                            child: Text('Date'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'alphabetical',
+                            child: Text('Alphabetical'),
+                          ),
+                        ],
                         onChanged: (value) {
                           setState(() {
-                            sortCriteria = value;
+                            context.read<HomeCubit>().sortCriteria = value;
                           });
                         },
                       ),
                       DropdownButton<String>(
-                        value: sortArrangement,
+                        value: context.read<HomeCubit>().sortArrangement,
                         hint: Text('Sort Arrangement'),
-                        items: ['ASC', 'DESC']
-                            .map((e) =>
-                                DropdownMenuItem(value: e, child: Text(e)))
-                            .toList(),
+                        items: [
+                          DropdownMenuItem(
+                            value: 'ASC',
+                            child: Text('Ascending'),
+                          ),
+                          DropdownMenuItem(
+                            value: 'DESC',
+                            child: Text('Descending'),
+                          ),
+                        ],
                         onChanged: (value) {
                           setState(() {
-                            sortArrangement = value;
+                            context.read<HomeCubit>().sortArrangement = value;
                           });
                         },
                       ),
@@ -106,7 +126,7 @@ class _HomeViewBodyState extends State<HomeView> {
           actions: [
             TextButton(
               onPressed: () {
-                context.read<HomeCubit>().clearFilters();
+                context.read<HomeCubit>().resetFilters();
                 Navigator.pop(context);
               },
               child: Text('Reset Filters'),
@@ -114,10 +134,11 @@ class _HomeViewBodyState extends State<HomeView> {
             TextButton(
               onPressed: () {
                 context.read<HomeCubit>().applyFilters(
-                      minPrice: minPrice,
-                      maxPrice: maxPrice,
-                      sortCriteria: sortCriteria,
-                      sortArrangement: sortArrangement,
+                      minPrice: context.read<HomeCubit>().minPrice,
+                      maxPrice: context.read<HomeCubit>().maxPrice,
+                      sortCriteria: context.read<HomeCubit>().sortCriteria,
+                      sortArrangement:
+                          context.read<HomeCubit>().sortArrangement,
                     );
                 Navigator.pop(context);
               },
