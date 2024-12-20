@@ -4,9 +4,10 @@ import 'package:kouider_app/core/helpers/spacing.dart';
 import 'package:kouider_app/core/theming/colors_manager.dart';
 import 'package:kouider_app/core/theming/styles.dart';
 import 'package:kouider_app/core/widgets/custom_fading_widget.dart';
+import 'package:kouider_app/core/widgets/loading_item.dart';
 import 'package:kouider_app/features/home/data/models/products.dart';
 import 'package:kouider_app/features/home/logic/home_cubit/home_cubit.dart';
-import 'package:kouider_app/features/home/presentation/widgets/custom_home_item_loading_widget.dart';
+import 'package:kouider_app/core/widgets/custom_home_item_loading_widget.dart';
 import 'package:kouider_app/features/home/presentation/widgets/home_section_header.dart';
 import 'package:kouider_app/features/home/presentation/widgets/product_item.dart';
 

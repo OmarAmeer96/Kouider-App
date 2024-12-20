@@ -56,7 +56,7 @@ class _HomeViewBodyState extends State<HomeView> {
                 Expanded(
                   child: SingleChildScrollView(
                     controller: _scrollController,
-                    physics: const BouncingScrollPhysics(),
+                    // physics: const BouncingScrollPhysics(),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: BlocBuilder<HomeCubit, HomeState>(

@@ -8,7 +8,7 @@ import 'package:kouider_app/features/home/data/models/products.dart';
 import 'package:kouider_app/features/home/logic/home_cubit/home_cubit.dart';
 import 'package:kouider_app/features/home/logic/home_cubit/home_state.dart';
 import 'package:kouider_app/features/home/presentation/widgets/custom_home_app_bar.dart';
-import 'package:kouider_app/features/home/presentation/widgets/custom_home_item_loading_widget.dart';
+import 'package:kouider_app/core/widgets/custom_home_item_loading_widget.dart';
 import 'package:kouider_app/features/home/presentation/widgets/home_section_header.dart';
 
 class HomeView extends StatefulWidget {
