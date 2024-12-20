@@ -7,7 +7,10 @@ import 'package:kouider_app/features/home/presentation/widgets/home_floating_fil
 class HomeFloatingfilterButtonBlocBuilder extends StatelessWidget {
   const HomeFloatingfilterButtonBlocBuilder({
     super.key,
+    required this.onPressed,
   });
+
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +21,7 @@ class HomeFloatingfilterButtonBlocBuilder extends StatelessWidget {
                 left: 12,
                 top: MediaQuery.of(context).size.height * 0.6,
                 child: HomeFloatingFilterButton(
-                  onPressed: () {
-                    context.read<HomeCubit>().getProducts();
-                  },
+                  onPressed: onPressed,
                 ),
               )
             : const SizedBox.shrink();
