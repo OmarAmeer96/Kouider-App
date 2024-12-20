@@ -35,7 +35,7 @@ class ProductItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                verticalSpace(12), // Start
+                verticalSpace(12),
                 Row(
                   children: [
                     Expanded(
