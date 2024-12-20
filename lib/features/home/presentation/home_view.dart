@@ -75,7 +75,7 @@ class _HomeViewBodyState extends State<HomeView> {
             ),
             HomeFloatingfilterButtonBlocBuilder(
               onPressed: () {
-                context.read<HomeCubit>().getProducts();
+                // TODO: Implement the filter functionality
               },
             ),
           ],
