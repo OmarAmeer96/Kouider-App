@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class FadingLogo extends StatelessWidget {
-  const FadingLogo({
+class FadingWidget extends StatelessWidget {
+  const FadingWidget({
     super.key,
     required this.opacityAnimation,
     required this.image,

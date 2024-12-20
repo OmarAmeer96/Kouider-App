@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kouider_app/core/theming/colors_manager.dart';
-import 'package:kouider_app/core/theming/styles.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:kouider_app/core/helpers/assets.dart';
 
-class SlidingText extends StatelessWidget {
-  const SlidingText({
+class SlidingWidget extends StatelessWidget {
+  const SlidingWidget({
     super.key,
     required this.slidingAnimation,
     required this.opacityAnimation,
@@ -22,15 +22,7 @@ class SlidingText extends StatelessWidget {
           position: slidingAnimation,
           child: Opacity(
             opacity: opacityAnimation.value,
-            child: Container(
-              padding: const EdgeInsets.symmetric(vertical: 6),
-              color: ColorsManager.mainOrangeShade,
-              child: Text(
-                "Omar Ameer",
-                textAlign: TextAlign.center,
-                style: Styles.font30OrangeBold,
-              ),
-            ),
+            child: SvgPicture.asset(SvgAssets.splashItem),
           ),
         );
       },
