@@ -9,7 +9,7 @@ import 'package:kouider_app/features/home/logic/home_cubit/home_cubit.dart';
 import 'package:kouider_app/features/home/logic/home_cubit/home_state.dart';
 import 'package:kouider_app/features/home/presentation/widgets/custom_home_app_bar.dart';
 import 'package:kouider_app/features/home/presentation/widgets/custom_home_item_loading_widget.dart';
-import 'package:kouider_app/features/home/presentation/widgets/home_floating_filter_button.dart';
+import 'package:kouider_app/features/home/presentation/widgets/home_floating_filter_button_bloc_builder.dart';
 import 'package:kouider_app/features/home/presentation/widgets/home_section_header.dart';
 import 'package:kouider_app/features/home/presentation/widgets/product_item.dart';
 
@@ -73,21 +73,7 @@ class _HomeViewBodyState extends State<HomeView> {
                 ),
               ],
             ),
-            BlocBuilder<HomeCubit, HomeState>(
-              builder: (context, state) {
-                return state is Success
-                    ? Positioned(
-                        left: 12,
-                        top: MediaQuery.of(context).size.height * 0.6,
-                        child: HomeFloatingFilterButton(
-                          onPressed: () {
-                            context.read<HomeCubit>().getProducts();
-                          },
-                        ),
-                      )
-                    : const SizedBox.shrink();
-              },
-            ),
+            HomeFloatingfilterButtonBlocBuilder(),
           ],
         ),
       ),

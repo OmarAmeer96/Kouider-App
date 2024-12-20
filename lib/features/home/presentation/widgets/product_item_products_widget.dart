@@ -26,7 +26,7 @@ class ProductItemPointsWidget extends StatelessWidget {
         children: [
           Text(
             "50 نقطة",
-            style: Styles.font11ProductItemPoints,
+            style: Styles.font17ProductItemBold,
           ),
           horizontalSpace(2),
           SvgPicture.asset(SvgAssets.homePointsIcon),
