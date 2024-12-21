@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:kouider_app/core/theming/font_family_helper.dart';
 import 'package:kouider_app/core/theming/styles.dart';
 import 'package:kouider_app/features/home/logic/home_cubit/home_cubit.dart';
+import 'package:kouider_app/features/home/presentation/widgets/build_drop_down_item.dart';
+import 'package:kouider_app/features/home/presentation/widgets/custom_drop_down_button.dart';
 
 void showFilterDialog(BuildContext context) {
   showDialog(
@@ -59,50 +59,21 @@ void showFilterDialog(BuildContext context) {
                         'ترتيب حسب:',
                         style: Styles.font17ProductItemBold,
                       ),
-                      DropdownButton<String>(
+                      CustomDropDownButton(
+                        hintText: 'معايير الترتيب',
                         value: context.read<HomeCubit>().sortCriteria,
-                        hint: Text(
-                          'معايير الترتيب',
-                          style: Styles.font17ProductItemBold.copyWith(
-                            fontSize: 14.sp,
-                            fontFamily: FontFamilyHelper.vazirmatnMedium,
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                        isExpanded: true,
                         items: [
-                          DropdownMenuItem(
+                          buildDropDownItem(
                             value: 'price',
-                            child: Text(
-                              'السعر',
-                              style: Styles.font17ProductItemBold.copyWith(
-                                fontSize: 14.sp,
-                                fontFamily: FontFamilyHelper.vazirmatnMedium,
-                                color: Colors.grey[900],
-                              ),
-                            ),
+                            text: 'السعر',
                           ),
-                          DropdownMenuItem(
+                          buildDropDownItem(
                             value: 'date',
-                            child: Text(
-                              'التاريخ',
-                              style: Styles.font17ProductItemBold.copyWith(
-                                fontSize: 14.sp,
-                                fontFamily: FontFamilyHelper.vazirmatnMedium,
-                                color: Colors.grey[900],
-                              ),
-                            ),
+                            text: 'التاريخ',
                           ),
-                          DropdownMenuItem(
+                          buildDropDownItem(
                             value: 'alphabetical',
-                            child: Text(
-                              'أبجدي',
-                              style: Styles.font17ProductItemBold.copyWith(
-                                fontSize: 14.sp,
-                                fontFamily: FontFamilyHelper.vazirmatnMedium,
-                                color: Colors.grey[900],
-                              ),
-                            ),
+                            text: 'أبجدي',
                           ),
                         ],
                         onChanged: (value) {
@@ -116,39 +87,17 @@ void showFilterDialog(BuildContext context) {
                         'ترتيب الفلاتر:',
                         style: Styles.font17ProductItemBold,
                       ),
-                      DropdownButton<String>(
+                      CustomDropDownButton(
+                        hintText: 'ترتيب الفلاتر',
                         value: context.read<HomeCubit>().sortArrangement,
-                        hint: Text(
-                          'ترتيب الفلاتر',
-                          style: Styles.font17ProductItemBold.copyWith(
-                            fontSize: 14.sp,
-                            fontFamily: FontFamilyHelper.vazirmatnMedium,
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                        isExpanded: true,
                         items: [
-                          DropdownMenuItem(
+                          buildDropDownItem(
                             value: 'ASC',
-                            child: Text(
-                              'تصاعدي',
-                              style: Styles.font17ProductItemBold.copyWith(
-                                fontSize: 14.sp,
-                                fontFamily: FontFamilyHelper.vazirmatnMedium,
-                                color: Colors.grey[900],
-                              ),
-                            ),
+                            text: 'تصاعدي',
                           ),
-                          DropdownMenuItem(
+                          buildDropDownItem(
                             value: 'DESC',
-                            child: Text(
-                              'تنازلي',
-                              style: Styles.font17ProductItemBold.copyWith(
-                                fontSize: 14.sp,
-                                fontFamily: FontFamilyHelper.vazirmatnMedium,
-                                color: Colors.grey[900],
-                              ),
-                            ),
+                            text: 'تنازلي',
                           ),
                         ],
                         onChanged: (value) {
