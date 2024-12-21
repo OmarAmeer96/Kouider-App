@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1096824019074",
+    "project_id": "kouider-app",
+    "storage_bucket": "kouider-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1096824019074:android:375b0146c54daa075b7c9b",
+        "android_client_info": {
+          "package_name": "com.example.kouider_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCG66jZeyTjPCMwwPb5TCfNAHlJimz0jjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

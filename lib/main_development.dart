@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,8 +17,7 @@ void main() async {
 
   await SentryFlutter.init(
     (options) {
-      options.dsn =
-          'https://aff76431b6e7e074dbc0cf2f3fe58109@o4508502989864960.ingest.us.sentry.io/4508502992224256';
+      options.dsn = Platform.environment['SENTRY_DSN'];
       options.tracesSampleRate = 1.0;
       options.profilesSampleRate = 1.0;
     },
