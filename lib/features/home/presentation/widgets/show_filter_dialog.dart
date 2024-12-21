@@ -28,7 +28,7 @@ void showFilterDialog(BuildContext context) {
                         value: (context.read<HomeCubit>().minPrice ?? 0)
                             .toDouble(),
                         min: 0,
-                        max: 1000,
+                        max: 10000,
                         divisions: 100,
                         label: context.read<HomeCubit>().minPrice?.toString(),
                         onChanged: (value) {
@@ -38,14 +38,14 @@ void showFilterDialog(BuildContext context) {
                         },
                       ),
                       Text(
-                        'الحد الأقصى للسعر: EGP ${context.read<HomeCubit>().maxPrice ?? 1000}',
+                        'الحد الأقصى للسعر: EGP ${context.read<HomeCubit>().maxPrice ?? 10000}',
                         style: Styles.font17ProductItemBold,
                       ),
                       Slider(
-                        value: (context.read<HomeCubit>().maxPrice ?? 1000)
+                        value: (context.read<HomeCubit>().maxPrice ?? 10000)
                             .toDouble(),
                         min: 0,
-                        max: 1000,
+                        max: 10000,
                         divisions: 100,
                         label: context.read<HomeCubit>().maxPrice?.toString(),
                         onChanged: (value) {

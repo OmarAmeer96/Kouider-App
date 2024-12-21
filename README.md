@@ -120,9 +120,6 @@ lib/
 
 ## Firebase Integration 🔥
 
-- **Authentication**
-- **Firestore Database**
-- **Cloud Messaging**
 - **App Distribution**
 
 Setup Firebase using `flutterfire configure` and add required files for Android and iOS.
