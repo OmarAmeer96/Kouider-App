@@ -30,6 +30,7 @@ Kouider App is a modern Flutter application designed with a focus on:
   - [CI/CD Workflow 🔄](#cicd-workflow-)
     - [GitHub Actions Workflow Example](#github-actions-workflow-example)
   - [Screenshots 📸](#screenshots-)
+    - [App Demo 🎥](#app-demo-)
 
 ---
 
@@ -188,6 +189,9 @@ jobs:
 
 ## Screenshots 📸
 
-| App Demo                          | Splash Screen                           | Home Screen                             |
-| ------------------------------------ | -------------------------------------- | ------------------------------------------ |
-| ![Demo](assets/screenshots/home.png) | ![Splash](assets/screenshots/login.png) | ![Home](assets/screenshots/profile.png) |
+| App Demo                          | Splash Screen                           | Loading                             | Home Screen                             | Filtering                             |
+| ------------------------------------ | -------------------------------------- | ------------------------------------------ |------------------------------------------ | ------------------------------------------ |
+|  *(See video below)*  | <img src="https://github.com/user-attachments/assets/88546b87-6786-4c6a-9147-6c71ac8f94e3" width="200"/> | <img src="https://github.com/user-attachments/assets/aa0e4be1-d212-454e-b247-89ffbc957c28" width="200"/> | <img src="https://github.com/user-attachments/assets/c8fbb2c9-ec71-4897-b4d1-f061c44eb7f5" width="200"/> | <img src="https://github.com/user-attachments/assets/711c8905-0670-4936-8953-d7ade4fdeb64" width="200"/> |
+
+### App Demo 🎥
+[Watch the video here](https://github.com/user-attachments/assets/c0a97d10-b5eb-4849-97d7-9228a40f21ba)
