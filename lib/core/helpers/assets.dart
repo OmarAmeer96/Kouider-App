@@ -25,3 +25,7 @@ class SvgAssets {
 }
 
 class ImageAssets {}
+
+class JsonAssets {
+  static const noProductsFound = 'assets/json/no_products_found.json';
+}

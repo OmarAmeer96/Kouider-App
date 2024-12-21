@@ -11,8 +11,7 @@ class HomeRepo {
   Future<ApiResult<Products>> getProducts({
     int? page,
     int? productsPerPage,
-    // String? category = 'assorted-bakeries',
-    String? category,
+    String? category = 'assorted-bakeries',
     int? minPrice,
     int? maxPrice,
     String? sortCriteria,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kouider_app/core/helpers/assets.dart';
 import 'package:kouider_app/core/helpers/spacing.dart';
 import 'package:kouider_app/core/theming/colors_manager.dart';
 import 'package:kouider_app/core/theming/styles.dart';
@@ -10,6 +11,7 @@ import 'package:kouider_app/features/home/logic/home_cubit/home_cubit.dart';
 import 'package:kouider_app/core/widgets/custom_home_item_loading_widget.dart';
 import 'package:kouider_app/features/home/presentation/widgets/home_section_header.dart';
 import 'package:kouider_app/features/home/presentation/widgets/product_item.dart';
+import 'package:lottie/lottie.dart';
 
 Widget setupsLoadingState() {
   return const CustomFadingWidget(
@@ -30,12 +32,20 @@ Widget setupSuccessState(
     children: [
       HomeSectionHeader(title: "حلويات غربية"),
       verticalSpace(5),
-      ...cubit.allProducts.map(
-        (product) => ProductItem(
-          product: product,
-          isLastItem: product == cubit.allProducts.last,
+      if (cubit.allProducts.isNotEmpty)
+        ...cubit.allProducts.map(
+          (product) => ProductItem(
+            product: product,
+            isLastItem: product == cubit.allProducts.last,
+          ),
         ),
-      ),
+      if (cubit.allProducts.isEmpty)
+        Align(
+          alignment: Alignment.center,
+          child: Lottie.asset(
+            JsonAssets.noProductsFound,
+          ),
+        ),
       if (cubit.isLoadingMore)
         const CustomFadingWidget(
           child: Padding(

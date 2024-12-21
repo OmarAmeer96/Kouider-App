@@ -27,7 +27,7 @@ class HomeCubit extends Cubit<HomeState> {
     emit(const HomeState.loading());
     final response = await _productsRepo.getProducts(
       page: currentPage,
-      productsPerPage: 10,
+      productsPerPage: 5,
       minPrice: minPrice,
       maxPrice: maxPrice,
       sortCriteria: sortCriteria,
@@ -61,7 +61,7 @@ class HomeCubit extends Cubit<HomeState> {
 
     final response = await _productsRepo.getProducts(
       page: currentPage,
-      productsPerPage: 10,
+      productsPerPage: 5,
       minPrice: minPrice,
       maxPrice: maxPrice,
       sortCriteria: sortCriteria,
